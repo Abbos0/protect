@@ -55,14 +55,6 @@ function App() {
     setFile(event.target.files[0]);
   };
 
-  useEffect(() => {
-    fetch(`${API_URL}/api/files`)
-      .then((response) => response.json())
-      .then((data) => setFiles(data))  // Bu yerda setFiles ishlatiladi
-      .catch((error) => console.error("Error fetching files:", error));
-  }, []);
-
-
   const handleFileUpload = async (event) => {
     event.preventDefault();
     if (!file) {
@@ -106,13 +98,14 @@ function App() {
     }
   }, [isLoggedIn]);
 
+ 
   useEffect(() => {
+    // Backenddan fayllarni olish
     fetch(`${API_URL}/api/files`)
-      .then((response) => response.json())
-      .then((data) => setFiles(data))
-      .catch((error) => console.error("Error fetching files:", error));
+      .then(response => response.json())
+      .then(data => setFiles(data))
+      .catch(error => console.log("Error:", error));
   }, []);
-  
 
   return (
     <div className="App">
