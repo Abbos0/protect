@@ -1,0 +1,27 @@
+{
+  "name": "your-app-name",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "browserify-zlib": "^0.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-fileupload": "^1.5.1",
+    "https-browserify": "^1.0.0",
+    "multer": "^1.4.5-lts.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "^3.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "web-vitals": "^4.2.4"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
