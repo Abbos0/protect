@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5057";
+
 function App() {
+  const [files, setFiles] = useState([]);
   const [password, setPassword] = useState('');
   const [smsCode, setSmsCode] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
@@ -50,6 +55,14 @@ function App() {
     setFile(event.target.files[0]);
   };
 
+  useEffect(() => {
+    fetch(`${API_URL}/api/files`)
+      .then((response) => response.json())
+      .then((data) => setFiles(data))  // Bu yerda setFiles ishlatiladi
+      .catch((error) => console.error("Error fetching files:", error));
+  }, []);
+
+
   const handleFileUpload = async (event) => {
     event.preventDefault();
     if (!file) {
@@ -93,6 +106,14 @@ function App() {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    fetch(`${API_URL}/api/files`)
+      .then((response) => response.json())
+      .then((data) => setFiles(data))
+      .catch((error) => console.error("Error fetching files:", error));
+  }, []);
+  
+
   return (
     <div className="App">
       <h1>Parolni kiriting:</h1>
@@ -120,6 +141,16 @@ function App() {
       )}
 
       <p>{message}</p>
+
+
+      <div>
+      <h1>Uploaded Files</h1>
+      <ul>
+        {files.map((file) => (
+          <li key={file.id}>{file.name}</li>
+        ))}
+      </ul>
+    </div>
 
       {/* Fayl yuklash formasi faqat login bo'lgan foydalanuvchilarga ko'rsatiladi */}
       {isLoggedIn && (
