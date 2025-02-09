@@ -35,7 +35,10 @@ function App() {
     }
   };
 
-  // SMS kodini tekshirish
+
+
+
+
   const handleSubmitSms = (event) => {
     event.preventDefault();
     const correctSmsCode = Math.floor(1000 + Math.random() * 9000); // SMS kodi
